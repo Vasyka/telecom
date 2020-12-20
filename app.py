@@ -21,11 +21,7 @@ top_words = pd.read_csv('data/top_words.csv',index_col=0)
 with open('data/lda.pkl', 'rb') as f:
     lda = pickle.load(f)
 
-# Load vectorizer and vectors
-def lemma_tokenize(text):
-        return final_tokens
-with open('data/count_vectorizer.pkl', 'rb') as fi:
-    vectorizer = pickle.load(fi)
+# Load tfidf vectors
 text_tfidf = load_npz('data/X_tfidf.npz')
 
 # Get scores for topics for all texts
