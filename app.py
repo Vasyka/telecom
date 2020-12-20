@@ -23,7 +23,7 @@ with open('data/lda.pkl', 'rb') as f:
 
 # Load vectorizer and vectors
 def lemma_tokenize(text):
-    return ['']
+        return final_tokens
 with open('data/count_vectorizer.pkl', 'rb') as fi:
     vectorizer = pickle.load(fi)
 text_tfidf = load_npz('data/X_tfidf.npz')
