@@ -16,24 +16,13 @@ import dash_bootstrap_components as dbc
 # Load data
 df = pd.read_csv('data/Telecom_with_topics.csv',index_col=0)
 
-# Load lda model,topics and keywords
+# Load topics and keywords
 top_words = pd.read_csv('data/top_words.csv',index_col=0)
-with open('data/lda.pkl', 'rb') as f:
-    lda = pickle.load(f)
 
 # Load tfidf vectors
 text_tfidf = load_npz('data/X_tfidf.npz')
 
-# Get scores for topics for all texts
-predicted = lda.transform(text_tfidf)
-top_scores = np.max(predicted,axis=1)
-
-# Add scores for topics to data table
-text_lens = df.Text.apply(lambda text: len(re.split(r'[\s,.!]',text)))
-df.loc[:,'top_score'] = np.NaN
-df.loc[text_lens>=4,'top_score'] = top_scores
-
-# Load top words and reorder index
+# Load top words scores and reorder index
 top_words_values = pd.read_csv('data/top_words_values.csv',index_col=0)
 top_words_values = top_words_values.loc[top_words_values.index[::-1]]
 top_words = top_words.loc[top_words.index[::-1]]
